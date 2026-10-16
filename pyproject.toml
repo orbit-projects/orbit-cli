@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "orbit-cli"
+version = "0.1.0a1"
+description = "Interactive operator control room for the Orbit framework ecosystem."
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Orbit Contributors" }]
+keywords = ["cloud-native", "developer-tools", "framework", "operator", "terminal"]
+dependencies = [
+  "orbit-core>=0.1.0a1,<0.2",
+  "textual>=1.0,<2",
+  "typer>=0.12,<1",
+  "rich>=13.8,<16",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Typing :: Typed",
+]
+
+[project.scripts]
+orbit = "orbit_cli.app:app"
+
+[project.urls]
+Source = "https://github.com/orbit-projects/orbit-cli"
+Issues = "https://github.com/orbit-projects/orbit-cli/issues"
+Documentation = "https://github.com/orbit-projects/orbit-cli/tree/main/docs"
+Security = "https://github.com/orbit-projects/orbit-cli/security/policy"
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2,<2",
+  "mypy>=1.13,<2",
+  "pytest>=9,<10",
+  "pytest-asyncio>=1.3,<2",
+  "pytest-cov>=7,<8",
+  "ruff>=0.8,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/orbit_cli"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers --cov=orbit_cli --cov-branch --cov-report=term-missing --cov-fail-under=90"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["orbit_cli"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["orbit_cli"]
+
+[tool.coverage.run]
+branch = true
+source = ["orbit_cli"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
