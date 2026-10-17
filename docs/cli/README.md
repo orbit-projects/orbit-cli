@@ -23,6 +23,13 @@ logs, errors, and returned summaries. Errors are reported by safe exception type
 messages and tracebacks are not displayed. The UI invokes only actions on enabled plugins
 registered by the selected application.
 
+For an optional secret-provider access check, install `orbit-secrets[control]` and attach its
+`secret_provider_control_actions(provider)` result to an explicitly registered plugin. The CLI
+then displays the masked reference form and the provider's immutable version without displaying
+or saving secret values. The helper resolves secret bytes to validate access, so use it only for
+deliberate local checks; Python cannot guarantee zeroization. See the
+[`orbit-secrets` integration guide](https://github.com/orbit-projects/orbit-secrets/blob/main/docs/operations/cli.md).
+
 For example, a provider plugin can contribute a read-only connectivity check without adding a
 dependency on the terminal UI:
 
