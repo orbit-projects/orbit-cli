@@ -11,3 +11,6 @@ label state-changing actions destructive so the UI requires confirmation.
 
 The UI does not store credentials. Provider packages own credential loading and refresh. Use the
 application's normal secret provider and follow least-privilege practices for cloud accounts.
+The optional `orbit-secrets` control action masks the reference input and returns only a provider
+version, but it still resolves secret bytes in the local process. Python cannot guarantee
+zeroization; do not use this check with untrusted targets or as a remote secret retrieval service.
