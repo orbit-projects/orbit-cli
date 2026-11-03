@@ -14,7 +14,7 @@ authors = [{ name = "Orbit Contributors" }]
 keywords = ["cloud-native", "developer-tools", "framework", "operator", "terminal"]
 dependencies = [
   "orbit-core>=0.1.0a1,<0.2",
-  "textual>=1.0,<2",
+  "textual>=8.2.8,<9",
   "typer>=0.12,<1",
   "rich>=13.8,<16",
 ]
